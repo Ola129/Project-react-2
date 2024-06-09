@@ -1,4 +1,4 @@
-import "./CurrencyForm";
+import "./CurrencyForm.css";
 
 const CurrencyForm = ({
   currencies,
@@ -35,6 +35,7 @@ const CurrencyForm = ({
           ))}
         </select>
       </div>
+      <label className="label">to</label>
       <button className="btn" type="submit">
         Przelicz
       </button>

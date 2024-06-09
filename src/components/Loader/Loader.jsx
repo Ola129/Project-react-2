@@ -1,4 +1,4 @@
-import "./Loader";
+import "./Loader.css";
 
 const Loader = ({ isLoading }) => {
   if (isLoading) {

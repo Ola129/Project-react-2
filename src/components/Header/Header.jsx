@@ -4,7 +4,7 @@ import {
   faDollarSign,
   faEuroSign,
 } from "@fortawesome/free-solid-svg-icons";
-import "./Header";
+import "./Header.css";
 
 const Header = () => {
   return (

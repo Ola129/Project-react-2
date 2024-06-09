@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import CurrencyForm from "../CurrencyForm/CurrencyForm";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
 import "./CurrencyConverter.css";
 
-const CurrencyContainer = () => {
+const CurrencyConverter = () => {
   const currencies = ["EUR", "USD", "CHF"];
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState(currencies[0]);
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const [error, setError] = useState(null);
 
   const fetchRate = async (currency) => {
     setIsLoading(true);
@@ -16,6 +19,9 @@ const CurrencyContainer = () => {
       const response = await fetch(
         `https://api.nbp.pl/api/exchangerates/rates/A/${currency}/?format=json`
       );
+      if (!response.ok) {
+        throw new Error();
+      }
       const data = await response.json();
       const rate = data.rates[0]?.mid;
       if (rate) {
@@ -24,6 +30,9 @@ const CurrencyContainer = () => {
       }
     } catch (error) {
       console.error("Wystąpił błąd podczas pobierania danych", error);
+      setError(
+        `Wystąpił błąd podczas pobierania danych. Spróbuj ponownie później.`
+      );
     }
     setIsLoading(false);
   };
@@ -46,6 +55,7 @@ const CurrencyContainer = () => {
   return (
     <div>
       <header className="title"></header>
+      <ErrorMessage message={error} />
       <CurrencyForm
         currencies={currencies}
         amount={amount}
@@ -61,4 +71,4 @@ const CurrencyContainer = () => {
   );
 };
 
-export default CurrencyContainer;
+export default CurrencyConverter;
