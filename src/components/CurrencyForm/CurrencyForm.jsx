@@ -1,3 +1,4 @@
+import "./CurrencyForm";
 
 const CurrencyForm = ({
   currencies,

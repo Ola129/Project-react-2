@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CurrencyForm from "../CurrencyForm/CurrencyForm";
 import Loader from "../Loader/Loader";
+import "./CurrencyConverter.css";
 
 const CurrencyContainer = () => {
   const currencies = ["EUR", "USD", "CHF"];
